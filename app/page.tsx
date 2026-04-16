@@ -1,9 +1,10 @@
 import Link from "next/link";
 import Image from "next/image";
-import { getRecentPosts } from "@/data/posts";
+import { getBasePath, getRecentPosts } from "@/data/posts";
 
 export default function Home() {
   const posts = getRecentPosts(3);
+  const avatarSrc = `${getBasePath()}/IMG2.png`;
 
   const projects = [
     {
@@ -26,7 +27,7 @@ export default function Home() {
 
       <div className="layout">
         <aside className="side reveal" aria-label="Profile and site links">
-          <Image className="avatar" src="/IMG2.png" alt="frostsalix avatar" width={700} height={700} priority />
+          <Image className="avatar" src={avatarSrc} alt="frostsalix avatar" width={700} height={700} priority />
           <h1>frostsalix</h1>
           <p className="tagline">Occasional code wizard, frequent overthinker.</p>
           <nav aria-label="Section links" className="side-nav">

@@ -9,6 +9,18 @@ const SUPPORTED_EXTENSIONS = new Set([".md", ".mdx"]);
 const DEFAULT_DEV_SITE_URL = "http://localhost:3000";
 const DEFAULT_PROD_SITE_URL = "https://matsumae.top";
 
+function inferProjectBasePath() {
+  const [repoOwner, repoName] = (process.env.GITHUB_REPOSITORY ?? "").split("/");
+  const isProjectPagesRepo =
+    Boolean(repoOwner) &&
+    Boolean(repoName) &&
+    repoName.toLowerCase() !== `${repoOwner.toLowerCase()}.github.io`;
+
+  return process.env.GITHUB_ACTIONS === "true" && isProjectPagesRepo
+    ? `/${repoName}`
+    : "";
+}
+
 export type PostFrontmatter = {
   title: string;
   date: string;
@@ -219,4 +231,8 @@ export function getSiteUrl() {
 
 export function buildPostUrl(slug: string) {
   return `${getSiteUrl()}/posts/${slug}`;
+}
+
+export function getBasePath() {
+  return process.env.NEXT_PUBLIC_BASE_PATH ?? inferProjectBasePath();
 }
