@@ -1,0 +1,53 @@
+---
+title: "Static First, Dynamic Later"
+date: "2026-03-31"
+excerpt: "A practical migration path from static content blocks to markdown collections and CMS feeds, with fewer gremlins."
+tags:
+  - nextjs
+  - architecture
+---
+
+Static pages are fast, predictable, and a little bit smug, which is perfect for initial personal sites.
+
+They are the kind of smug that comes from actually sleeping well.
+
+They also make a nice home for tutorial content: tool writeups, image hosting notes, and little build logs all behave better when the output is mostly text and a few carefully chosen pictures.
+
+## Why this approach works
+
+- Fewer moving parts, fewer surprise explosions
+- Easier local iteration, more time to stare at the ceiling
+- Better confidence in deploys, less bargaining with the universe
+
+It also means your content has one obvious place to live. That sounds boring until you realize boring is what lets you ship.
+
+When a site grows, the main task is not to become clever. The task is to keep the content easy to locate, easy to update, and easy to rewrite when you discover a better way to explain the same idea.
+
+## Image hosting without drama
+
+If you use image hosting for screenshots, diagrams, or book covers, pick a setup that is stable before it is fancy. A local `public/` folder is fine for small projects. A CDN or object storage bucket makes sense when the gallery starts growing teeth.
+
+The useful questions are simple: can you hotlink it, does it survive deploys, and can your future self find the file again without performing archaeology?
+
+## Evolving content storage
+
+When the number of posts grows, migrate from local files to a headless CMS step by step instead of trying to teleport the whole archive.
+
+The important part is to keep the shape of the content familiar. Readers should not feel like they wandered into a different building with the same wallpaper.
+
+That usually means preserving the same frontmatter fields, keeping your slugs stable, and avoiding the temptation to rename everything just because the storage layer got a makeover.
+
+### Keep frontmatter compatible
+
+Using `title`, `date`, `excerpt`, and `tags` everywhere makes migrations low-risk and keeps future chaos politely contained.
+
+If you later swap the storage engine, the content still knows how to introduce itself without opening with a forklift.
+
+### A simple migration checklist
+
+1. Export the current posts as plain files.
+2. Keep the same URL pattern.
+3. Verify images still load.
+4. Read one article on mobile, because that is where weird spacing goes to hide.
+
+If all four steps feel dull, the migration is probably healthy.
