@@ -26,15 +26,17 @@ export default function Home() {
           <h1>frostsalix</h1>
           <p className="tagline">Occasional code wizard, frequent overthinker.</p>
           <ThemeToggle />
-          <Link className="about-link" href="/" aria-current="page">
-            Home
-          </Link>
-          <Link className="about-link" href="/about">
-            About
-          </Link>
-          <Link className="about-link" href="/contact">
-            Contact
-          </Link>
+          <nav className="side-nav" aria-label="Primary">
+            <Link className="about-link" href="/" aria-current="page">
+              Home
+            </Link>
+            <Link className="about-link" href="/about">
+              About
+            </Link>
+            <Link className="about-link" href="/contact">
+              Contact
+            </Link>
+          </nav>
         </aside>
 
         <section id="main-content" className="main reveal reveal-delay-1">

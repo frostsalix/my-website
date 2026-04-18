@@ -26,15 +26,17 @@ export default function AboutPage() {
           <h1>frostsalix</h1>
           <p className="tagline">Occasional code wizard, frequent overthinker.</p>
           <ThemeToggle />
-          <Link className="about-link" href="/">
-            Home
-          </Link>
-          <Link className="about-link" href="/about" aria-current="page">
-            About
-          </Link>
-          <Link className="about-link" href="/contact">
-            Contact
-          </Link>
+          <nav className="side-nav" aria-label="Primary">
+            <Link className="about-link" href="/">
+              Home
+            </Link>
+            <Link className="about-link" href="/about" aria-current="page">
+              About
+            </Link>
+            <Link className="about-link" href="/contact">
+              Contact
+            </Link>
+          </nav>
         </aside>
 
         <section id="main-content" className="main reveal reveal-delay-1">

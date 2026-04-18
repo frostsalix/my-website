@@ -292,6 +292,14 @@ body::after {
   color: var(--muted);
 }
 
+.side-nav {
+  margin-top: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0.35rem;
+}
+
 .micro {
   margin-top: 1rem;
   font-size: 0.92rem;
@@ -301,14 +309,10 @@ body::after {
 .about-link {
   display: flex;
   width: fit-content;
-  margin-top: 0.85rem;
+  margin-top: 0;
   text-decoration: none;
   color: var(--muted);
   border-bottom: 1px solid transparent;
-}
-
-.about-link + .about-link {
-  margin-top: 0.35rem;
 }
 
 .about-link:hover,
@@ -501,19 +505,34 @@ a {
 }
 
 .contact-form {
-  margin-top: 0.75rem;
+  margin-top: 0.9rem;
   max-width: 40rem;
-  display: grid;
-  gap: 0.55rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.95rem;
+  padding: 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.85rem;
+  background:
+    linear-gradient(180deg, color-mix(in srgb, var(--surface) 90%, var(--bg)), var(--surface)),
+    var(--surface);
+}
+
+.contact-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
 }
 
 .form-field {
   font-size: 0.92rem;
   color: var(--muted);
+  line-height: 1.4;
 }
 
 .form-input,
 .form-textarea {
+  display: block;
   width: 100%;
   border: 1px solid var(--line);
   border-radius: 0.55rem;
@@ -535,11 +554,12 @@ a {
 }
 
 .form-submit {
-  margin-top: 0.25rem;
+  margin-top: 0.1rem;
   width: fit-content;
-  border: 0;
-  background: transparent;
-  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--surface) 92%, var(--bg));
+  padding: 0.45rem 0.9rem;
   color: var(--accent);
   font: inherit;
   cursor: pointer;
@@ -547,8 +567,9 @@ a {
 
 .form-submit:hover,
 .form-submit:focus-visible {
-  text-decoration: underline;
-  text-underline-offset: 0.18em;
+  background: color-mix(in srgb, var(--accent-soft) 62%, var(--surface));
+  border-color: color-mix(in srgb, var(--accent) 30%, var(--line));
+  text-decoration: none;
 }
 
 .posts-index {
