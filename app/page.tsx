@@ -1,23 +1,10 @@
-import Link from "next/link";
 import Image from "next/image";
-import { getBasePath, getRecentPosts } from "@/data/posts";
+import Link from "next/link";
+import { getBasePath } from "@/data/posts";
+import ThemeToggle from "./theme-toggle";
 
 export default function Home() {
-  const posts = getRecentPosts(3);
   const avatarSrc = `${getBasePath()}/IMG2.png`;
-
-  const projects = [
-    {
-      name: "Button Press Simulator",
-      summary: "A tidy studio lot that behaves like a polite robot until you ask it for chaos.",
-      href: "/posts/designing-a-personal-site-that-scales-into-a-blog",
-    },
-    {
-      name: "Sticky Note Factory",
-      summary: "A tiny lab for collecting odd UI ideas before they escape into production.",
-      href: "/posts/static-first-dynamic-later",
-    },
-  ];
 
   return (
     <main className="shell">
@@ -27,17 +14,27 @@ export default function Home() {
 
       <div className="layout">
         <aside className="side reveal" aria-label="Profile and site links">
-          <Image className="avatar" src={avatarSrc} alt="frostsalix avatar" width={700} height={700} priority />
+          <Image
+            className="avatar"
+            src={avatarSrc}
+            alt="frostsalix avatar"
+            width={700}
+            height={700}
+            priority
+            suppressHydrationWarning
+          />
           <h1>frostsalix</h1>
           <p className="tagline">Occasional code wizard, frequent overthinker.</p>
-          <nav aria-label="Section links" className="side-nav">
-            <Link href="/posts">Posts</Link>
-            <Link href="/archive">Archive</Link>
-            <a href="#projects">Projects</a>
-            <a href="#about">About</a>
-            <a href="#links">Links</a>
-          </nav>
-          <p className="micro">“A lamp learns nothing, but it still lights the room.”</p>
+          <ThemeToggle />
+          <Link className="about-link" href="/" aria-current="page">
+            Home
+          </Link>
+          <Link className="about-link" href="/about">
+            About
+          </Link>
+          <Link className="about-link" href="/contact">
+            Contact
+          </Link>
         </aside>
 
         <section id="main-content" className="main reveal reveal-delay-1">
@@ -47,90 +44,35 @@ export default function Home() {
             <p>“If the hallway disappears, assume the hallway was never serious.”</p>
           </header>
 
-          <section id="posts" className="block" aria-labelledby="posts-title">
-            <div className="block-head">
-              <h3 id="posts-title">Fresh scraps</h3>
-              <Link href="/posts" aria-label="See the whole pile">
-                See the whole pile
-              </Link>
-            </div>
-
-            <ul className="post-list">
-              {posts.map((post) => (
-                <li key={post.slug} className="post-card">
-                  <p className="meta">
-                    {post.date} · {post.readingText}
-                  </p>
-                  <h4>
-                    <Link href={`/posts/${post.slug}`}>{post.title}</Link>
-                  </h4>
-                  <p>{post.excerpt}</p>
-                  <p className="chips">
-                    {post.tags.map((tag, index) => (
-                      <span key={tag}>
-                        <Link href={`/posts/tags/${tag.toLowerCase()}`}>{tag}</Link>
-                        {index < post.tags.length - 1 ? " / " : ""}
-                      </span>
-                    ))}
-                  </p>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section id="projects" className="block" aria-labelledby="projects-title">
-            <h3 id="projects-title">Selected oddities</h3>
-            <ul className="project-list">
-              {projects.map((project) => (
-                <li key={project.name} className="project-row">
-                  <a href={project.href}>{project.name}</a>
-                  <p>{project.summary}</p>
-                </li>
-              ))}
-            </ul>
-          </section>
-
-          <section id="about" className="block" aria-labelledby="about-title">
-            <h3 id="about-title">About</h3>
+          <section id="Profound paragraph" className="block" aria-labelledby="Profound paragraph-title">
+            <h3 id="Profound paragraph-title">Profound paragraph</h3>
+            <br></br>
             <p>
-              I enjoy building practical tools, writing engineering notes, and nudging interfaces
-              until they stop pretending to be corporate. Most updates begin as a small tweak and
-              end as a slightly cursed improvement.
+              &ldquo;I&rsquo;d rather you shot at tin cans in the backyard, but I know you&rsquo;ll go
+              after birds. Shoot all the blue jays you want, if you can hit &lsquo;em, but remember
+              it&rsquo;s a sin to kill a mockingbird.&rdquo; That was the only time I ever heard Atticus
+              say it was a sin to do something, and I asked Miss Maudie about it. &ldquo;Your
+              father&rsquo;s right,&rdquo; she said. &ldquo;Mockingbirds don&rsquo;t do one thing except make
+              music for us to enjoy. They don&rsquo;t eat up people&rsquo;s gardens, don&rsquo;t nest in corn
+              cribs, they don&rsquo;t do one thing but sing their hearts out for us. That&rsquo;s why
+              it&rsquo;s a sin to kill a mockingbird.&rdquo;
+              </p>
+            <p>
+              &ldquo;I nodded at the time, though I still didn&rsquo;t fully understand. That evening, as
+              the light slowly faded, I sat on the front steps, watching the shadows of the
+              trees stand still in the distance. Suddenly, a small bird landed on the fence and
+              began to sing softly. The song was simple, yet it quieted something inside me.&ldquo;
             </p>
-          </section>
-
-          <section id="links" className="block" aria-labelledby="links-title">
-            <h3 id="links-title">Find me lurking on</h3>
-            <ul className="link-list" aria-label="Social links">
-              <li>
-                <a href="https://github.com/frostsalix" target="_blank" rel="noreferrer">
-                  GitHub
-                </a>
-              </li>
-              <li>
-                <a href="https://x.com/frostsalix" target="_blank" rel="noreferrer">
-                  X
-                </a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com/@frostsalix" target="_blank" rel="noreferrer">
-                  YouTube
-                </a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com/frostsalix" target="_blank" rel="noreferrer">
-                  Instagram
-                </a>
-              </li>
-              <li>
-                <a href="https://discord.gg/JJxpH8p2" target="_blank" rel="noreferrer">
-                  Discord
-                </a>
-              </li>
-              <li>
-                <a href="mailto:frostsalix@gmail.com">Email</a>
-              </li>
-            </ul>
+            <p>
+              &ldquo;I began to realize that some things do not need explaining. Their mere existence
+              is already something precious. They harm no one and ask for nothing, offering only
+              the best part of themselves to the world.&ldquo;
+            </p>
+            <p>
+              &ldquo;After that, whenever I heard such a song, I would think of those words again&mdash;that
+              some things are wrong not because they are written in rules, but because they harm
+              what should never have been harmed.&rdquo;
+            </p>
           </section>
 
           <footer className="footnote">Made of notes, snacks, and movie magic.</footer>
